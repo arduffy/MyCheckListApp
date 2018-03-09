@@ -4,7 +4,8 @@ package com.cidm4385.wt.mychecklistapp;
  * Created by Amanda on 3/8/2018.
  */
 
-public class CheckListItem {
+public class CheckListItems {
+
 
     private String mItemName;
     private boolean mChecked;

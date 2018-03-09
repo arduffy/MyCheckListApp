@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,7 +44,7 @@ public class CheckListFragment extends Fragment {
 
     private void updateUI() {
         CheckListRepo checkListRepo = CheckListRepo.get(getActivity());
-        List<CheckListItem> checkListItems = checkListRepo.getCheckListItems();
+        List<CheckListItems> checkListItems = checkListRepo.getCheckListItems();
 
         if (mAdapter == null) {
             mAdapter = new CheckListAdapter(checkListItems);
@@ -55,7 +56,7 @@ public class CheckListFragment extends Fragment {
 
     private class CheckListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private CheckListItem mCheckListItem;
+        private List<CheckListItems> mCheckListItems;
 
         private TextView mItemName;
         private CheckBox mCheckBox;
@@ -68,10 +69,10 @@ public class CheckListFragment extends Fragment {
             mCheckBox = (CheckBox) itemView.findViewById(R.id.checkbox);
         }
 
-        public void bind(CheckListItem checkListItem) {
-            mCheckListItem = checkListItem;
-            mItemName.setText(mCheckListItem.getItemName());
-            mCheckBox.setVisibility(checkListItem.isChecked() ? View.VISIBLE : View.GONE);
+        public void bind(List<CheckListItems> CheckListItems) {
+            mCheckListItems = CheckListItems;
+            mItemName.setText(CheckListItems.getItemName());
+            mCheckBox.setVisibility(CheckListItems.isChecked() ? View.VISIBLE : View.GONE);
         }
 
         @Override
@@ -82,9 +83,9 @@ public class CheckListFragment extends Fragment {
 
     private class CheckListAdapter extends RecyclerView.Adapter<CheckListHolder> {
 
-        private List<CheckListItem> mCheckListItems;
+        private List<CheckListItems> mCheckListItems;
 
-        public CheckListAdapter(List<CheckListItem> checkListItems) {
+        public CheckListAdapter(List<CheckListItems> checkListItems) {
             mCheckListItems = checkListItems;
         }
 
@@ -96,8 +97,8 @@ public class CheckListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(CheckListHolder holder, int position) {
-            CheckListItem checkListItem = mCheckListItems.get(position);
-            holder.bind(checkListItem);
+            CheckListItems checkListItems = mCheckListItems.get(position);
+            holder.bind(mCheckListItems);
         }
 
         @Override
@@ -105,9 +106,4 @@ public class CheckListFragment extends Fragment {
             return mCheckListItems.size();
         }
     }
-}
-
-
-
-
 }
