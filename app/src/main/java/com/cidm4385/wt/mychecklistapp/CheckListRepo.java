@@ -13,7 +13,7 @@ public class CheckListRepo {
 
     private static CheckListRepo sCheckListRepo;
 
-    private List<CheckListItems> mCheckListItems;
+    private List<CheckListItem> mCheckListItems;
 
     public static CheckListRepo get(Context context) {
         if (sCheckListRepo == null) {
@@ -24,14 +24,18 @@ public class CheckListRepo {
     }
 
     private CheckListRepo(Context context) {
-        ArrayList<String> CheckListItems= new ArrayList<String>();
-            CheckListItems.add("RAM");
-            CheckListItems.add("Monitor");
+        mCheckListItems = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            CheckListItem checkListItem = new CheckListItem();
+            checkListItem.setItemName("RAM");
+            checkListItem.setChecked(i % 2 == 0);
+            mCheckListItems.add(checkListItem);
+        }
 
 
     }
 
-    public List<CheckListItems> getCheckListItems() {
+    public List<CheckListItem> getCheckListItems() {
         return mCheckListItems;
     }
 }

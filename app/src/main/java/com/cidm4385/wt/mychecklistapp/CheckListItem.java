@@ -4,11 +4,11 @@ package com.cidm4385.wt.mychecklistapp;
  * Created by Amanda on 3/8/2018.
  */
 
-public class CheckListItems {
+public class CheckListItem {
 
 
-    private String mItemName;
-    private boolean mChecked;
+    public String mItemName;
+    public boolean mChecked;
 
 
     public String getItemName(){

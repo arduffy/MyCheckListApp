@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,7 +43,7 @@ public class CheckListFragment extends Fragment {
 
     private void updateUI() {
         CheckListRepo checkListRepo = CheckListRepo.get(getActivity());
-        List<CheckListItems> checkListItems = checkListRepo.getCheckListItems();
+        List<CheckListItem> checkListItems = checkListRepo.getCheckListItems();
 
         if (mAdapter == null) {
             mAdapter = new CheckListAdapter(checkListItems);
@@ -56,23 +55,24 @@ public class CheckListFragment extends Fragment {
 
     private class CheckListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private List<CheckListItems> mCheckListItems;
+//        private List<CheckListItem> mCheckListItems;
+        private CheckListItem mCheckListItem;
 
-        private TextView mItemName;
-        private CheckBox mCheckBox;
+        private TextView mItemNameTextView;
+        private CheckBox mCheckBoxCheckBoxView;
 
         public CheckListHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item, parent, false));
             itemView.setOnClickListener(this);
 
-            mItemName = (TextView) itemView.findViewById(R.id.item_name);
-            mCheckBox = (CheckBox) itemView.findViewById(R.id.checkbox);
+            mItemNameTextView = (TextView) itemView.findViewById(R.id.item_name);
+            mCheckBoxCheckBoxView = (CheckBox) itemView.findViewById(R.id.checkbox);
         }
 
-        public void bind(List<CheckListItems> CheckListItems) {
-            mCheckListItems = CheckListItems;
-            mItemName.setText(CheckListItems.getItemName());
-            mCheckBox.setVisibility(CheckListItems.isChecked() ? View.VISIBLE : View.GONE);
+        public void bind(CheckListItem checkListItem) {
+            mCheckListItem = checkListItem;
+            mItemNameTextView.setText(mCheckListItem.getItemName());
+            mCheckBoxCheckBoxView.setVisibility(mCheckListItem.isChecked() ? View.VISIBLE : View.GONE);
         }
 
         @Override
@@ -83,9 +83,9 @@ public class CheckListFragment extends Fragment {
 
     private class CheckListAdapter extends RecyclerView.Adapter<CheckListHolder> {
 
-        private List<CheckListItems> mCheckListItems;
+        private List<CheckListItem> mCheckListItems;
 
-        public CheckListAdapter(List<CheckListItems> checkListItems) {
+        public CheckListAdapter(List<CheckListItem> checkListItems) {
             mCheckListItems = checkListItems;
         }
 
@@ -97,8 +97,8 @@ public class CheckListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(CheckListHolder holder, int position) {
-            CheckListItems checkListItems = mCheckListItems.get(position);
-            holder.bind(mCheckListItems);
+            CheckListItem checkListItem = mCheckListItems.get(position);
+            holder.bind(checkListItem);
         }
 
         @Override
