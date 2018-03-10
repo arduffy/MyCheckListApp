@@ -71,8 +71,8 @@ public class CheckListFragment extends Fragment {
 
         public void bind(CheckListItem checkListItem) {
             mCheckListItem = checkListItem;
-            mItemNameTextView.setText(mCheckListItem.getItemName());
-            mCheckBoxCheckBoxView.setVisibility(mCheckListItem.isChecked() ? View.VISIBLE : View.GONE);
+            mItemNameTextView.setText(checkListItem.getItemName());
+            mCheckBoxCheckBoxView.setChecked(checkListItem.isChecked());
         }
 
         @Override

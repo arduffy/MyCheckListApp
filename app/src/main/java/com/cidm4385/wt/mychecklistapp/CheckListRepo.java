@@ -25,15 +25,63 @@ public class CheckListRepo {
 
     private CheckListRepo(Context context) {
         mCheckListItems = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            CheckListItem checkListItem = new CheckListItem();
-            checkListItem.setItemName("RAM");
-            checkListItem.setChecked(i % 2 == 0);
-            mCheckListItems.add(checkListItem);
-        }
 
+        CheckListItem checkListItem = new CheckListItem();
+        checkListItem.setItemName("RAM");
+        checkListItem.setChecked(false);
+        mCheckListItems.add(checkListItem);
 
+        checkListItem = new CheckListItem();
+        checkListItem.setItemName("CPU");
+        checkListItem.setChecked(false);
+        mCheckListItems.add(checkListItem);
+
+        checkListItem = new CheckListItem();
+        checkListItem.setItemName("Power Supply");
+        checkListItem.setChecked(false);
+        mCheckListItems.add(checkListItem);
+
+        checkListItem = new CheckListItem();
+        checkListItem.setItemName("Graphic/video card");
+        checkListItem.setChecked(false);
+        mCheckListItems.add(checkListItem);
+
+        checkListItem = new CheckListItem();
+        checkListItem.setItemName("Case");
+        checkListItem.setChecked(false);
+        mCheckListItems.add(checkListItem);
+
+        checkListItem = new CheckListItem();
+        checkListItem.setItemName("Motherboard");
+        checkListItem.setChecked(false);
+        mCheckListItems.add(checkListItem);
+
+        checkListItem = new CheckListItem();
+        checkListItem.setItemName("Monitor");
+        checkListItem.setChecked(false);
+        mCheckListItems.add(checkListItem);
+
+        checkListItem = new CheckListItem();
+        checkListItem.setItemName("Keyboard and mouse");
+        checkListItem.setChecked(false);
+        mCheckListItems.add(checkListItem);
+
+        checkListItem = new CheckListItem();
+        checkListItem.setItemName("Cooling fans");
+        checkListItem.setChecked(false);
+        mCheckListItems.add(checkListItem);
+
+        checkListItem = new CheckListItem();
+        checkListItem.setItemName("Hard drive");
+        checkListItem.setChecked(false);
+        mCheckListItems.add(checkListItem);
+
+        checkListItem = new CheckListItem();
+        checkListItem.setItemName("Sound Card");
+        checkListItem.setChecked(false);
+        mCheckListItems.add(checkListItem);
     }
+
 
     public List<CheckListItem> getCheckListItems() {
         return mCheckListItems;
